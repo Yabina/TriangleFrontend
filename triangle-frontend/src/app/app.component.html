@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+  <form (ngSubmit)="getTriangleType()">
+    <label for="side1">Side 1:</label>
+    <input type="number" id="side1" [(ngModel)]="side1" name="side1" required />
+
+    <label for="side2">Side 2:</label>
+    <input type="number" id="side2" [(ngModel)]="side2" name="side2" required />
+
+    <label for="side3">Side 3:</label>
+    <input type="number" id="side3" [(ngModel)]="side3" name="side3" required />
+
+    <button type="submit">Get Triangle Type</button>
+  </form>
+
+  <div *ngIf="triangleType">
+    <h2>Triangle Type: {{ triangleType }}</h2>
+  </div>
+</div>
