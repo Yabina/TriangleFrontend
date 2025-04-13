@@ -1,10 +1,14 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [
+        AppComponent, // Import the standalone component directly
+        HttpClientModule, // Add HttpClientModule here
+      ],
     }).compileComponents();
   });
 
@@ -20,10 +24,11 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('triangle-frontend');
   });
 
-  it('should render title', () => {
+  it('should have initial side values set to 0', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, triangle-frontend');
+    const app = fixture.componentInstance;
+    expect(app.side1).toEqual(0);
+    expect(app.side2).toEqual(0);
+    expect(app.side3).toEqual(0);
   });
 });
