@@ -19,13 +19,11 @@ export class AppComponent {
 
   constructor(private http: HttpClient) {}
 
-// stuff!
-
-  getTriangleType() {
+    getTriangleType() {
     const url = `https://triangle-middleware-app-production.up.railway.app/triangle/type?side1=${this.side1}&side2=${this.side2}&side3=${this.side3}`;
-    this.http.get<{ type: string }>(url).subscribe({
+    this.http.post(url, '', { responseType: 'text' }).subscribe({
       next: (response) => {
-        this.triangleType = response.type;
+        this.triangleType = response; // Set the response directly to triangleType
       },
       error: (err) => {
         console.error('Error fetching triangle type:', err);
