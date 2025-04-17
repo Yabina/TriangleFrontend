@@ -39,7 +39,7 @@ export class AppComponent {
 
   constructor(private http: HttpClient) {}
 
-  getTriangleType() {
+    getTriangleType() {
     const url = `https://triangle-middleware-app-production.up.railway.app/triangle/type?side1=${this.side1}&side2=${this.side2}&side3=${this.side3}`;
     this.http.post(url, '', { responseType: 'text' }).subscribe({
       next: (response) => {

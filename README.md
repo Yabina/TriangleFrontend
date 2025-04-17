@@ -57,3 +57,9 @@ Before proceeding, ensure you have the following installed on your system:
    ```
 
    This command uses the Karma test runner to execute the unit tests defined in the project. The results will be displayed in the terminal, and a browser window may open to show detailed test results.
+
+   To run the test once and in headless mode (without opening a browser), you can use the following command:
+
+   ```bash
+   ng test --watch=false --browsers=ChromeHeadless
+   ```
