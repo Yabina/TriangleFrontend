@@ -80,6 +80,13 @@ export class AppComponent {
     this.responseStatus = null;
     this.quadrilateralResponse = null;
 
+    // Check if any side is null before making the request
+    if ([this.sideA, this.sideB, this.sideC, this.sideD].some(v => v === null)) {
+      this.responseStatus = 400;
+      this.quadrilateralResponse = { error: 'Please fill in all 4 sides before submitting.' };
+      return;
+    }
+
     this.http.post<QuadResponse>(this.buildUrl(params), {}, { observe: 'response' }).subscribe({
       next: (res) => {
         this.responseStatus = res.status;
@@ -98,13 +105,6 @@ export class AppComponent {
     const params = { sideA: this.sideA!, sideB: this.sideB!, sideC: this.sideC!, sideD: this.sideD! };
     this.responseStatus = null;
     this.quadrilateralResponse = null;
-
-    // Check if any side is null before making the request
-    if ([this.sideA, this.sideB, this.sideC, this.sideD].some(v => v === null)) {
-      this.responseStatus = 400;
-      this.quadrilateralResponse = { error: 'Please fill in all 4 sides before submitting.' };
-      return;
-    }
 
     this.http.get<QuadResponse>(this.buildUrl(params), { observe: 'response' }).subscribe({
       next: (res) => {
