@@ -1,0 +1,38 @@
+/* Quad UX Responses */
+.response-wrapper {
+    border: 1px solid #ccc;
+    margin-top: 1rem;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.action-bar {
+    height: 6px;
+    width: 100%;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.response-wrapper.post .action-bar {
+    background-color: #1976d2;
+}
+
+.response-wrapper.get .action-bar {
+    background-color: #388e3c;
+}
+
+.response-wrapper.put .action-bar {
+    background-color: #f9a825;
+}
+
+.response-wrapper.delete .action-bar {
+    background-color: #d32f2f;
+}
+
+.response-content {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    font-family: monospace;
+}
+
