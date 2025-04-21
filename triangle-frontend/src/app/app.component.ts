@@ -41,6 +41,8 @@ export class AppComponent {
   triangleType: string = '';
 
   @ViewChild('triangleCanvas', { static: false }) triangleCanvas!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('quadCanvas', { static: false }) quadCanvas!: ElementRef<HTMLCanvasElement>;
+
 
   // Quadrilateral properties
   title2 = 'quadrilateral-frontend';
@@ -151,6 +153,8 @@ export class AppComponent {
       next: (res) => {
         this.responseStatus = res.status;
         this.quadrilateralResponse = res.body;
+        this.drawQuadrilateral(res.body!.type);
+        console.log('Drawing quadrilateral:', res.body!.type);
       },
       error: (err) => {
         this.responseStatus = err.status || null;
@@ -196,6 +200,7 @@ export class AppComponent {
       next: (res) => {
         this.responseStatus = res.status;
         this.quadrilateralResponse = res.body;
+        this.drawQuadrilateral(res.body!.type);
       },
       error: (err) => {
         this.responseStatus = err.status || null;
@@ -215,6 +220,7 @@ export class AppComponent {
       next: (res) => {
         this.responseStatus = res.status;
         this.quadrilateralResponse = { type: 'Quadrilateral data has been reset.' } as QuadResponse;
+        this.clearQuadCanvas();
       },
       error: (err) => {
         this.responseStatus = err.status || null;
@@ -231,4 +237,113 @@ export class AppComponent {
       .join('&');
     return `${this.quadUrl}?${query}`;
   }
+
+  drawQuadrilateral(type: string) {
+    console.log('[Canvas] Drawing type:', type);
+    const canvas = this.quadCanvas.nativeElement;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+      console.error('[Canvas] Context not found!');
+      return;
+    }
+  
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+    const padding = 40;
+    const w = canvas.width - padding * 2;
+    const h = canvas.height - padding * 2;
+  
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 2;
+  
+    // Draw shape
+    ctx.beginPath();
+  
+    if (type.includes('Square') || type.includes('Rhombus')) {
+      const size = Math.min(w, h);
+      ctx.rect(padding, padding, size, size);
+      ctx.closePath();
+  
+      // Fill shape
+      ctx.fillStyle = 'rgba(167, 101, 39, 0.4)';
+      ctx.fill();
+      ctx.stroke();
+  
+      // Set label style AFTER fill
+      ctx.fillStyle = 'black';
+      ctx.font = '14px Arial';
+      ctx.textAlign = 'center';
+  
+      // Labels
+      ctx.fillText('A', padding + size / 2, padding - 6);
+      ctx.fillText('B', padding + size + 12, padding + size / 2);
+      ctx.fillText('C', padding + size / 2, padding + size + 16);
+      ctx.fillText('D', padding - 12, padding + size / 2);
+  
+    } else if (type.includes('Rectangle')) {
+      const rectWidth = w;
+      const rectHeight = h / 2;
+      ctx.rect(padding, padding, rectWidth, rectHeight);
+      ctx.closePath();
+  
+      ctx.fillStyle = 'rgba(167, 101, 39, 0.4)';
+      ctx.fill();
+      ctx.stroke();
+  
+      ctx.fillStyle = 'black';
+      ctx.font = '14px Arial';
+      ctx.textAlign = 'center';
+  
+      ctx.fillText('A', padding + rectWidth / 2, padding - 6);
+      ctx.fillText('B', padding + rectWidth + 12, padding + rectHeight / 2);
+      ctx.fillText('C', padding + rectWidth / 2, padding + rectHeight + 16);
+      ctx.fillText('D', padding - 12, padding + rectHeight / 2);
+  
+    } else {
+      // Unknown / skewed quad
+      const ax = padding;
+      const ay = padding + 30;
+      const bx = canvas.width - padding;
+      const by = padding;
+      const cx = canvas.width - padding - 30;
+      const cy = canvas.height - padding;
+      const dx = padding + 30;
+      const dy = canvas.height - padding;
+  
+      ctx.moveTo(ax, ay);
+      ctx.lineTo(bx, by);
+      ctx.lineTo(cx, cy);
+      ctx.lineTo(dx, dy);
+      ctx.closePath();
+  
+      ctx.fillStyle = 'rgba(167, 101, 39, 0.4)';
+      ctx.fill();
+      ctx.stroke();
+  
+      ctx.fillStyle = 'black';
+      ctx.font = '14px Arial';
+      ctx.textAlign = 'center';
+  
+      ctx.fillText('A', ax, ay - 6);
+      ctx.fillText('B', bx, by - 6);
+      ctx.fillText('C', cx, cy + 16);
+      ctx.fillText('D', dx, dy + 16);
+    }
+  }
+  
+  clearQuadCanvas() {
+    // Reset input fields
+    this.sideA = null;
+    this.sideB = null;
+    this.sideC = null;
+    this.sideD = null;
+
+    // Clear the canvas
+    const canvas = this.quadCanvas.nativeElement;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+  
 }

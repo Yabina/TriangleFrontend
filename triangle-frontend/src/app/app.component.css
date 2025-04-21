@@ -1,59 +1,56 @@
-/* Quad UX Responses */
-.response-wrapper {
-  border: 1px solid #ccc;
-  margin-top: 1rem;
-  border-radius: 4px;
-  overflow: hidden;
-  transition: border-color 0.3s ease;
-}
-
-.action-bar {
-  height: 6px;
-  width: 100%;
-  background-color: transparent;
-  transition: background-color 0.3s ease;
-}
-
-.response-wrapper.post .action-bar {
-  background-color: #1976d2;
-}
-
-.response-wrapper.get .action-bar {
-  background-color: #388e3c;
-}
-
-.response-wrapper.put .action-bar {
-  background-color: #f9a825;
-}
-
-.response-wrapper.delete .action-bar {
-  background-color: #d32f2f;
-}
-
-.response-content {
-  background-color: #f5f5f5;
-  padding: 1rem;
-  font-family: monospace;
-}
-
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 1rem;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
-mat-card {
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 1rem;
+.bento-box {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.bento-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.bento-main {
+  display: grid;
+  grid-template-columns: auto auto; /* form stays narrow */
+  gap: 2rem;
+  align-items: flex-start;
+  /* justify-content: center; */
+}
+
+.bento-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bento-response {
+  margin-top: 1rem;
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
+}
+
+.mat-card {
+  margin-bottom: 0;
 }
 
 canvas {
   border: 1px solid #ccc;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
 }
 
 /* Flexbox layout for the triangle section */
@@ -67,13 +64,15 @@ canvas {
 /* Style for the canvas container */
 .triangle-canvas {
   display: flex;
-  align-items: center;
   justify-content: center;
-  border: 1px solid #ccc;
-  padding: 10px;
-  background-color: #f9f9f9;
+  align-items: center;
+  /* padding-top: 1rem; */
+  height: 100%;
+}
+
+.triangle-canvas canvas {
   border-radius: 8px;
-  margin-top: 20px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 }
 
 .footer {
@@ -104,6 +103,17 @@ canvas {
 .spacer {
   flex: 1;
 }
+
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.button-group button {
+  width: 100%;
+}
+
 
 button.mat-raised-button {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -145,7 +155,6 @@ form#quadForm button.mat-raised-button {
 
 /* Add spacing between input fields */
 mat-form-field {
-  margin-bottom: 16px; /* Adds space below each input field */
   width: 100%; /* Ensures consistent width for input fields */
 }
 
@@ -159,8 +168,58 @@ form button.mat-raised-button {
   margin: 0 8px; /* Adds horizontal spacing between buttons */
 }
 
-.button-group {
+.tight-form .form-fields {
   display: flex;
-  justify-content: center; /* Centers the buttons */
-  margin-top: 16px; /* Adds spacing above the button group */
+  flex-direction: column;
+  gap: 0.75rem; /* clean spacing without margin overrides */
+}
+
+/* Quad UX Responses */
+.response-wrapper {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.response-wrapper .mat-card {
+  margin: 0;
+}
+
+.action-bar {
+  height: 4px;
+  width: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.response-wrapper.post .action-bar {
+  background-color: #1976d2;
+}
+.response-wrapper.get .action-bar {
+  background-color: #388e3c;
+}
+.response-wrapper.put .action-bar {
+  background-color: #f9a825;
+}
+.response-wrapper.delete .action-bar {
+  background-color: #d32f2f;
+}
+
+.response-content pre {
+  font-family: monospace;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+.response-content {
+  min-height: 120px; /* or 140px or whatever matches your typical response height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.placeholder-text {
+  color: #aaa;
+  font-style: italic;
 }
