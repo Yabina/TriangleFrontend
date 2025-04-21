@@ -1,38 +1,166 @@
 /* Quad UX Responses */
 .response-wrapper {
-    border: 1px solid #ccc;
-    margin-top: 1rem;
-    border-radius: 4px;
-    overflow: hidden;
-    transition: border-color 0.3s ease;
+  border: 1px solid #ccc;
+  margin-top: 1rem;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
 }
 
 .action-bar {
-    height: 6px;
-    width: 100%;
-    background-color: transparent;
-    transition: background-color 0.3s ease;
+  height: 6px;
+  width: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
 }
 
 .response-wrapper.post .action-bar {
-    background-color: #1976d2;
+  background-color: #1976d2;
 }
 
 .response-wrapper.get .action-bar {
-    background-color: #388e3c;
+  background-color: #388e3c;
 }
 
 .response-wrapper.put .action-bar {
-    background-color: #f9a825;
+  background-color: #f9a825;
 }
 
 .response-wrapper.delete .action-bar {
-    background-color: #d32f2f;
+  background-color: #d32f2f;
 }
 
 .response-content {
-    background-color: #f5f5f5;
-    padding: 1rem;
-    font-family: monospace;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  font-family: monospace;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+mat-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 1rem;
+}
+
+canvas {
+  border: 1px solid #ccc;
+  margin-top: 1rem;
+}
+
+/* Flexbox layout for the triangle section */
+.triangle-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px; /* Space between the card and the canvas */
+  margin-bottom: 20px;
+}
+
+/* Style for the canvas container */
+.triangle-canvas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background-color: #1976d2; /* Matches the primary toolbar color */
+  color: white;
+  font-size: 14px;
+  z-index: 1000;
+}
+
+.footer-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #bbdefb; /* Light blue for hover effect */
+}
+
+.spacer {
+  flex: 1;
+}
+
+button.mat-raised-button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button.mat-raised-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+mat-toolbar {
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+mat-toolbar.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure it stays above other elements */
+  background-color: #1976d2; /* Matches the primary toolbar color */
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+}
+
+form button.mat-raised-button {
+  margin-top: 16px; /* Adds padding between the input fields and the buttons */
+}
+
+/* For the triangle form */
+form#triangleForm button.mat-raised-button {
+  margin-top: 16px;
+}
+
+/* For the quadrilateral form */
+form#quadForm button.mat-raised-button {
+  margin-top: 16px;
+}
+
+/* Add spacing between input fields */
+mat-form-field {
+  margin-bottom: 16px; /* Adds space below each input field */
+  width: 100%; /* Ensures consistent width for input fields */
+}
+
+/* Add spacing between buttons */
+form button.mat-raised-button {
+  margin-top: 16px; /* Adds space above the buttons */
+  margin-right: 8px; /* Adds space between buttons if they are side by side */
+}
+
+.button-group button.mat-raised-button {
+  margin: 0 8px; /* Adds horizontal spacing between buttons */
+}
+
+.button-group {
+  display: flex;
+  justify-content: center; /* Centers the buttons */
+  margin-top: 16px; /* Adds spacing above the button group */
+}
