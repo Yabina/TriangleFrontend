@@ -1,93 +1,183 @@
+<mat-toolbar color="primary">
+  <span>MSSE640 Frontend Angular App</span>
+</mat-toolbar>
+
 <div class="container">
-  <h1>{{ title }}</h1>
-  <form (ngSubmit)="getTriangleType()">
-    <label for="side1">Side 1:</label>
-    <input type="number" id="side1" [(ngModel)]="side1" name="side1" required />
+  <!-- Triangle Section -->
+  <div class="triangle-section">
+    <!-- Triangle Input Card -->
+    <mat-card>
+      <mat-card-title>Triangle Input</mat-card-title>
+      <mat-card-content>
+        <form (ngSubmit)="getTriangleType()" #triangleForm="ngForm">
+          <mat-form-field appearance="fill">
+            <mat-label>Side 1</mat-label>
+            <input
+              matInput
+              type="number"
+              [(ngModel)]="side1"
+              name="side1"
+              required
+            />
+          </mat-form-field>
 
-    <label for="side2">Side 2:</label>
-    <input type="number" id="side2" [(ngModel)]="side2" name="side2" required />
+          <mat-form-field appearance="fill">
+            <mat-label>Side 2</mat-label>
+            <input
+              matInput
+              type="number"
+              [(ngModel)]="side2"
+              name="side2"
+              required
+            />
+          </mat-form-field>
 
-    <label for="side3">Side 3:</label>
-    <input type="number" id="side3" [(ngModel)]="side3" name="side3" required />
+          <mat-form-field appearance="fill">
+            <mat-label>Side 3</mat-label>
+            <input
+              matInput
+              type="number"
+              [(ngModel)]="side3"
+              name="side3"
+              required
+            />
+          </mat-form-field>
 
-    <button type="submit">Get Triangle Type</button>
-  </form>
+          <button mat-raised-button color="primary" type="submit">
+            Get Triangle Type
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
 
-  <div *ngIf="triangleType">
-    <h2>{{ triangleType }}</h2>
+    <!-- Canvas for Triangle -->
+    <div class="triangle-canvas">
+      <canvas #triangleCanvas width="300" height="300"></canvas>
+    </div>
+  </div>
+
+  <div *ngIf="triangleType" class="result">
+    <mat-card>
+      <mat-card-content>
+        <h2>{{ triangleType }}</h2>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
 
 <hr />
-<!-- QUAD HTML  -->
+
+<!-- Quadrilateral Section -->
 <div class="container">
-  <h1>{{ title2 }}</h1>
-  <form #quadForm="ngForm" class="quad-form">
-    <label for="sideA">Side A:</label>
-    <input
-      type="number"
-      id="sideA"
-      name="sideA"
-      [(ngModel)]="sideA"
-      placeholder="Enter side A"
-      required
-    />
+  <mat-card>
+    <mat-card-title>Quadrilateral Input</mat-card-title>
+    <mat-card-content>
+      <form #quadForm="ngForm" class="quad-form">
+        <mat-form-field appearance="fill">
+          <mat-label>Side A</mat-label>
+          <input
+            matInput
+            type="number"
+            id="sideA"
+            name="sideA"
+            [(ngModel)]="sideA"
+            placeholder="Enter side A"
+            required
+          />
+        </mat-form-field>
 
-    <label for="sideB">Side B:</label>
-    <input
-      type="number"
-      id="sideB"
-      name="sideB"
-      [(ngModel)]="sideB"
-      placeholder="Enter side B"
-      required
-    />
+        <mat-form-field appearance="fill">
+          <mat-label>Side B</mat-label>
+          <input
+            matInput
+            type="number"
+            id="sideB"
+            name="sideB"
+            [(ngModel)]="sideB"
+            placeholder="Enter side B"
+            required
+          />
+        </mat-form-field>
 
-    <label for="sideC">Side C:</label>
-    <input
-      type="number"
-      id="sideC"
-      name="sideC"
-      [(ngModel)]="sideC"
-      placeholder="Enter side C"
-      required
-    />
+        <mat-form-field appearance="fill">
+          <mat-label>Side C</mat-label>
+          <input
+            matInput
+            type="number"
+            id="sideC"
+            name="sideC"
+            [(ngModel)]="sideC"
+            placeholder="Enter side C"
+            required
+          />
+        </mat-form-field>
 
-    <label for="sideD">Side D:</label>
-    <input
-      type="number"
-      id="sideD"
-      name="sideD"
-      [(ngModel)]="sideD"
-      placeholder="Enter side D"
-      required
-    />
+        <mat-form-field appearance="fill">
+          <mat-label>Side D</mat-label>
+          <input
+            matInput
+            type="number"
+            id="sideD"
+            name="sideD"
+            [(ngModel)]="sideD"
+            placeholder="Enter side D"
+            required
+          />
+        </mat-form-field>
 
-    <div class="button-group">
-      <button type="button" (click)="postQuad()">Create (POST)</button>
-      <button type="button" (click)="getQuad()">Read (GET)</button>
-      <button type="button" (click)="putQuad()">Update (PUT)</button>
-      <button type="button" (click)="deleteQuad()">Delete (DELETE)</button>      
-    </div>
-  </form>
+        <div class="button-group">
+          <button
+            mat-raised-button
+            color="primary"
+            type="button"
+            (click)="postQuad()"
+          >
+            Create (POST)
+          </button>
+          <button
+            mat-raised-button
+            color="accent"
+            type="button"
+            (click)="getQuad()"
+          >
+            Read (GET)
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            type="button"
+            (click)="putQuad()"
+          >
+            Update (PUT)
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            type="button"
+            (click)="deleteQuad()"
+          >
+            Delete (DELETE)
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 
   <div
     *ngIf="quadrilateralResponse || responseStatus !== null"
     class="response-wrapper"
     [ngClass]="lastAction?.toLowerCase()"
   >
-  <div class="action-bar"></div>
+    <mat-card>
+      <mat-card-content>
+        <div *ngIf="responseStatus !== null">
+          <h3><strong>Status Code:</strong> {{ responseStatus }}</h3>
+        </div>
 
-  <div class="response-content">
-    <div *ngIf="responseStatus !== null">
-      <h3><strong>Status Code:</strong> {{ responseStatus }}</h3>
-    </div>
-
-    <div *ngIf="quadrilateralResponse">
-      <pre>{{ quadrilateralResponse | json }}</pre>
-    </div>
+        <div *ngIf="quadrilateralResponse">
+          <pre>{{ quadrilateralResponse | json }}</pre>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
-</div>
-
-
 </div>
