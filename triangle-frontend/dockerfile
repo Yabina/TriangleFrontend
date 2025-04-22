@@ -1,0 +1,38 @@
+# Use an official Node.js runtime as a parent image
+FROM node:23-alpine AS build
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the package.json and package-lock.json files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application code
+COPY . .
+
+# Build the Angular application
+RUN npm run build
+
+# Use a lightweight Node.js runtime to serve the SSR application
+FROM node:23-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the built application from the previous stage
+COPY --from=build /app/dist /app/dist
+
+# Copy the package.json file from the first stage
+COPY --from=build /app/package.json /app/package.json
+
+# Install production dependencies (if needed for SSR)
+# RUN npm install --production
+
+# Expose the port the app runs on
+EXPOSE 4000
+
+# Command to run the SSR application
+CMD ["npm", "run", "serve:ssr:triangle-frontend", "--", "--port", "4000"]
