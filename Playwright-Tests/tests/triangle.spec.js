@@ -56,5 +56,5 @@ test("has link", async ({ page }) => {
   await expect(page).toHaveURL(new RegExp("https://trianglefrontend-production.up.railway.app/"));
   await expect(page.getByText('TriangleFrontend')).toBeVisible();
  
- await page.pause();
+// await page.pause();
 });
