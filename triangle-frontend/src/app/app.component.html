@@ -11,50 +11,74 @@
           <!-- Left Column: Title + Form -->
           <div>
             <div class="bento-title">Triangle Input</div>
-      
-            <form (ngSubmit)="getTriangleType()" #triangleForm="ngForm" class="bento-form tight-form">
+
+            <form
+              (ngSubmit)="getTriangleType()"
+              #triangleForm="ngForm"
+              class="bento-form tight-form"
+            >
               <div class="form-fields">
                 <mat-form-field appearance="fill">
                   <mat-label>Side 1</mat-label>
-                  <input matInput type="number" [(ngModel)]="side1" name="side1" required />
+                  <input
+                    matInput
+                    type="number"
+                    [(ngModel)]="side1"
+                    name="side1"
+                    required
+                  />
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Side 2</mat-label>
-                  <input matInput type="number" [(ngModel)]="side2" name="side2" required />
+                  <input
+                    matInput
+                    type="number"
+                    [(ngModel)]="side2"
+                    name="side2"
+                    required
+                  />
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                   <mat-label>Side 3</mat-label>
-                  <input matInput type="number" [(ngModel)]="side3" name="side3" required />
+                  <input
+                    matInput
+                    type="number"
+                    [(ngModel)]="side3"
+                    name="side3"
+                    required
+                  />
                 </mat-form-field>
               </div>
-      
+
               <button mat-raised-button color="primary" type="submit">
                 Get Triangle Type
               </button>
             </form>
           </div>
-      
+
           <!-- Right Column: Canvas -->
           <div class="triangle-canvas">
             <canvas #triangleCanvas width="300" height="300"></canvas>
           </div>
         </div>
-      
+
         <!-- Response Section -->
         <div class="bento-response">
           <mat-card>
             <mat-card-content class="response-content">
               <div *ngIf="triangleType; else trianglePlaceholder">
-                <pre>{{ triangleType }}</pre>
+                <pre id="triangleType">{{ triangleType }}</pre>
               </div>
 
               <ng-template #trianglePlaceholder>
-                <pre class="placeholder-text">// Triangle type will display here after submission</pre>
+                <pre class="placeholder-text">
+// Triangle type will display here after submission</pre
+                >
               </ng-template>
             </mat-card-content>
           </mat-card>
         </div>
-      </div>      
+      </div>
     </div>
 
     <!-- Quadrilateral Section -->
@@ -65,66 +89,125 @@
           <!-- Left Column: Title + Form -->
           <div>
             <div class="bento-title">Quadrilateral Input</div>
-      
+
             <form #quadForm="ngForm" class="bento-form tight-form">
               <div class="form-fields">
                 <mat-form-field appearance="fill">
                   <mat-label>Side A</mat-label>
-                  <input matInput type="number" [(ngModel)]="sideA" name="sideA" placeholder="Enter side A" required />
+                  <input
+                    matInput
+                    type="number"
+                    [(ngModel)]="sideA"
+                    name="sideA"
+                    placeholder="Enter side A"
+                    required
+                  />
                 </mat-form-field>
-        
+
                 <mat-form-field appearance="fill">
                   <mat-label>Side B</mat-label>
-                  <input matInput type="number" [(ngModel)]="sideB" name="sideB" placeholder="Enter side B" required />
+                  <input
+                    matInput
+                    type="number"
+                    [(ngModel)]="sideB"
+                    name="sideB"
+                    placeholder="Enter side B"
+                    required
+                  />
                 </mat-form-field>
-        
+
                 <mat-form-field appearance="fill">
                   <mat-label>Side C</mat-label>
-                  <input matInput type="number" [(ngModel)]="sideC" name="sideC" placeholder="Enter side C" required />
+                  <input
+                    matInput
+                    type="number"
+                    [(ngModel)]="sideC"
+                    name="sideC"
+                    placeholder="Enter side C"
+                    required
+                  />
                 </mat-form-field>
-        
+
                 <mat-form-field appearance="fill">
                   <mat-label>Side D</mat-label>
-                  <input matInput type="number" [(ngModel)]="sideD" name="sideD" placeholder="Enter side D" required />
+                  <input
+                    matInput
+                    type="number"
+                    [(ngModel)]="sideD"
+                    name="sideD"
+                    placeholder="Enter side D"
+                    required
+                  />
                 </mat-form-field>
               </div>
-      
+
               <div class="button-group">
-                <button mat-raised-button color="primary" type="button" (click)="postQuad()">Create (POST)</button>
-                <button mat-raised-button color="accent" type="button" (click)="getQuad()">Read (GET)</button>
-                <button mat-raised-button color="warn" type="button" (click)="putQuad()">Update (PUT)</button>
-                <button mat-raised-button color="warn" type="button" (click)="deleteQuad()">Delete (DELETE)</button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="button"
+                  (click)="postQuad()"
+                >
+                  Create (POST)
+                </button>
+                <button
+                  mat-raised-button
+                  color="accent"
+                  type="button"
+                  (click)="getQuad()"
+                >
+                  Read (GET)
+                </button>
+                <button
+                  mat-raised-button
+                  color="warn"
+                  type="button"
+                  (click)="putQuad()"
+                >
+                  Update (PUT)
+                </button>
+                <button
+                  mat-raised-button
+                  color="warn"
+                  type="button"
+                  (click)="deleteQuad()"
+                >
+                  Delete (DELETE)
+                </button>
               </div>
             </form>
           </div>
-      
+
           <!-- Right Column: Canvas Placeholder -->
           <div class="triangle-canvas">
             <canvas #quadCanvas width="300" height="300"></canvas>
           </div>
         </div>
-      
+
         <!-- Response Section -->
-          <div
+        <div
           class="bento-response response-wrapper"
           [ngClass]="lastAction?.toLowerCase()"
         >
           <div class="action-bar"></div>
-        
+
           <mat-card>
             <mat-card-content class="response-content">
               <div *ngIf="responseStatus !== null">
                 <h3><strong>Status Code:</strong> {{ responseStatus }}</h3>
               </div>
-        
+
               <div *ngIf="quadrilateralResponse; else responsePlaceholder">
                 <pre>{{ quadrilateralResponse | json }}</pre>
               </div>
-        
-              <ng-template #responsePlaceholder>
-                <pre class="placeholder-text">// Results will appear here after you run an action</pre>
-                <pre class="placeholder-text">// Awaiting {{ lastAction || 'action' }} response</pre>
 
+              <ng-template #responsePlaceholder>
+                <pre class="placeholder-text">
+// Results will appear here after you run an action</pre
+                >
+                <pre class="placeholder-text">
+// Awaiting {{ lastAction || "action" }} response</pre
+                >
               </ng-template>
             </mat-card-content>
           </mat-card>
@@ -145,4 +228,3 @@
     </a>
   </mat-toolbar>
 </div>
-
