@@ -25,7 +25,7 @@ enum Env {
 }
 // Set the environment variable here
 // You can change this to Env.Prod when deploying to production
-const ENV: Env = Env.Local;
+const ENV: Env = Env.Prod;
 
 @Component({
   selector: 'app-root',

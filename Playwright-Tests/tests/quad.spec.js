@@ -10,7 +10,7 @@ import { test, expect } from "@playwright/test";
  */
 
 // Environment toggle: 'prod' or 'local'
-const ENV = 'local'; // Change to 'local' when testing locally
+const ENV = 'prod'; // Change to 'local' when testing locally
 
 const BASE_URL = ENV === 'prod'
     ? "https://trianglefrontend-production.up.railway.app/"
@@ -143,7 +143,6 @@ test.describe('Frontend Validation Tests', () => {
 
 });
 
-/*
 // Group: New Backend Features Tests (commented out until prod backend is updated)
 
 test.describe('New Backend Features Tests', () => {
@@ -177,4 +176,4 @@ test.describe('New Backend Features Tests', () => {
     });
 
 });
-*/
+
