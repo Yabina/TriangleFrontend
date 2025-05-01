@@ -24,6 +24,10 @@ Here is the Playwright site which contains good information and sample tests: ht
    npx playwright test triangle.spec.js
    ```
 
+   ```
+   npx playwright test quad.spec.js
+   ```
+
    or
 
    ```
